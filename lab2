@@ -1,0 +1,43 @@
+console.log("   n: Check a value");
+console.log("   q: quit")
+
+const userInput = prompt("Select a command:");
+
+while (!userInput.equals("q")){
+    const num = parseInt(prompt("Insert a number:"));
+    console.log(is_factorial(num));
+    const factNum = is_factorial(num);
+    if (is_factorial(num) == 0){
+        console.log(num + "is not the factor of another number");
+    }
+    else if(is_factorial(num) < 0){
+        console.log(num + "is a negative number");
+    }
+    else{
+        console.log(num + "is the factoral number of: " + factNum);
+    }
+}
+
+function is_factorial(numIn){
+    if(numIn < 0){
+        return -1;
+    }
+    else if (numIn === 0 ){
+        return 0;
+    }
+    else {
+        let i = 1;
+        let result = 1;
+        while (result < numIn){
+            i++;
+            result *= i;
+        }
+        if(result === numIn){
+            return i;
+        }
+        else{
+            return 0;
+        }
+
+    }
+} 
