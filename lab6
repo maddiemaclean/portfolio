@@ -1,6 +1,7 @@
-------------------- ( Part Two ) -------------------
-
 import re
+with open("L6Text.txt") as f:
+    file = f.read().replace("\n", " ")
+
 # only words of a given length
 def givenLength( stringIn,lengthIn):
     list = stringIn.split()
@@ -35,18 +36,14 @@ def commonLetter(stringIn):
         if character == element:
             countOfChar += 1
 
-
 #clean token: takes away non alphabetic chars
 
 def cleanToken(userIn):
     userIn = userIn.lower()
     pattern = r'[^A-Za-z0-9]'
-    userIn = re.sub(pattern, '', userIn)
+    userIn = re.sub(pattern, ' ', userIn)
     return userIn
 
-
-print(givenLength("The white cat and the red fox",3))
-print(longestWords("Hello CS2613! Python is fun"))
-print(longestWords("Hello CS2613! Pythons fun"))
-
-------------------- ( Part One ) -------------------
+print(givenLength(file))
+print(longestWords(file))
+print(longestWords(file))
