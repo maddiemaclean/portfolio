@@ -1,0 +1,129 @@
+file1 = open("DataInput.txt", "r+")
+lines = [line.strip() for line in file1.readlines()]
+print(lines)
+counter = 0
+# ----------------- ( Helper Methods ) -----------------
+
+def factorial(num):
+    factor = 0
+    for x in range(1,num+1):
+        factor = factor*x
+    return factor
+
+def calcSin(angle):
+        angle = angle % (2 * 3.14) # pi
+        toReturn = 0.0
+        for x in range(50):
+            result = ((-1) ** x) * (angle ** (2 * x + 1)) / factorial(2 * x + 1)
+            toReturn += result
+        return toReturn
+
+def calcCos(angle):
+        angle = angle % (2 * 3.14) # pi
+        toReturn = 0.0
+        for x in range(50):
+            result = ((-1) ** x) * (angle ** (2 * x )) / factorial(2 * x)
+            toReturn += result
+        return toReturn
+
+def exponential(num):
+        toReturn = 0.0
+        for x in range(50):
+            result = (num**x)/factorial(x)
+            toReturn += result
+        return toReturn
+        
+
+def poisson(num):
+    a = (2.71828 ** - 50)
+    b = (50 ** num) / factorial(num)
+    return a * b
+
+# ----------------- ( Main Methods ) -----------------
+
+def calcSum(n):
+    sum = 0
+    for x in range(counter+1,counter+1+n):
+        sum = sum + float(lines[counter+1])    
+    file1.write(sum)
+    return sum
+
+def avg(n):
+    file1.write(calcSum(n)/n)
+    return calcSum(n)/n
+
+def max(n):
+    max = float(lines[counter + 2])
+    for x in range(1, n):
+        if float(lines[counter + 2 + x]) > max:
+            max = float(lines[counter + 2 + x])
+    file1.write(max)
+    return max
+
+def min(n):
+    min = float(lines[counter + 2])
+    for x in range(1, n):
+        if float(lines[counter + 2 + x]) < min:
+            min = float(lines[counter + 2 + x])
+    file1.write(min)
+    return min
+
+def exp(n):
+    for x in range(1,n):
+        file1.write(exponential(lines[counter + 2 + x]))
+        return exponential(lines[counter + 2 + x])
+
+def poission(n):
+    for x in range(1,n):
+        file1.write(poisson(lines[counter + 2 + x]))
+        return exponential(lines[counter + 2 + x])
+
+
+def cos(n):
+    for x in range(1,n):
+        file1.write(cos(lines[counter + 2 + x]))
+        return calcCos(lines[counter + 2 + x])
+
+def sin(n):
+    for x in range(1,n):
+        file1.write(sin(lines[counter + 2 + x]))
+        return calcSin(lines[counter + 2 + x])
+
+
+# ----------------- ( Main Program ) -----------------
+
+for i in range(len(lines)):
+     if lines[i] == "SUM" :
+        calcSum (int(lines[i+1]))
+        counter = counter + 8
+
+     elif lines[i] == "AVG":
+        avg(int(lines[i+1]))
+        counter = counter + 8
+
+     elif lines[i] == "MAX" :
+        max(int(lines[i+1]))
+        counter = counter + 8
+
+     elif lines[i] == "MIN":
+        min(int(lines[i+1]))
+        counter = counter + 8
+
+     elif lines[i] == "FXP":
+        exp(int(lines[i+1]))
+        counter = counter + 8
+
+     elif lines[i] == "FPO":
+        poission(int(lines[i+1]))
+        counter = counter + 8
+
+     elif lines[i] == "FSN":
+        sin(int(lines[i+1]))
+        counter = counter + 8
+
+     elif lines[i] == "FCS":
+        cos(int(lines[i+1]))
+        counter = counter + 8
+
+     else:
+        counter = counter + 1
