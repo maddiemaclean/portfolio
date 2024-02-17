@@ -1,0 +1,5 @@
+locations = csv2cell('Locations.csv')
+cities = csv2cell('Cities.csv')
+# function retval = readCSV()
+disp(locations)
+disp(cities)
