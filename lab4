@@ -13,13 +13,8 @@ endfunction
 
 
 numValues = input("how many values:")
-	for i = 1: numValues:
-		a = input("")
-		vector1(i) = a;
-	endfor
-
-	for i=1 : length(vector1)
-		unitVector(vector1);
+	for i= numValues : length(vector)
+		unitVector(vecto1);
 	return;
 	endfor
 endFunction
