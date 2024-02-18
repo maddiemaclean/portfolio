@@ -1,0 +1,25 @@
+vector1 = [8,10,12,14]
+function retval = unitVector(v)
+	for i = 1 : length(v)
+		if( v(i) != 0)
+			mag = sqrt(sum(v'.^2))
+			retval = v/mag
+			return;
+		else
+			return v;
+		end if
+	end for 
+endfunction
+
+
+numValues = input("how many values:")
+	for i = 1: numValues:
+		a = input("")
+		vector1(i) = a;
+	endfor
+
+	for i=1 : length(vector1)
+		unitVector(vector1);
+	return;
+	endfor
+endFunction
