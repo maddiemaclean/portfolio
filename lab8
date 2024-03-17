@@ -12,3 +12,8 @@
 
 (define (word) "Testing")
 (palindrome word)
+
+(define (casear wordIn keyVal startingPos)
+  (cond
+    [(=(string-length wordIn) 0)(void)]
+    [(+(string-ref wordIn 0) keyVal)
