@@ -15,5 +15,6 @@
 
 (define (casear wordIn keyVal startingPos)
   (cond
-    [(=(string-length wordIn) 0)(void)]
-    [(+(string-ref wordIn 0) keyVal)
+  [(< pos (string-length word))
+  (conds((integer->char (+ key (char->integer (string-ref word pos))))
+  (decipher word (key) (add1 pos)))])))
