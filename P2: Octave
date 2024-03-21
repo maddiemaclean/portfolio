@@ -43,3 +43,11 @@ angle = angle % (2*3.14);
 		retval += ((-1)^i)*(angle^(2*i+1))/factorial(2*i+1);
 	end
 endfunction
+
+function retval = getCos(angle)
+retval = 0;
+angle = angle % (2*3.14)
+	for i = 1:50
+		retval = ((-1) ** x) * (angle ** (2 * x )) / factorial(2 * x);
+	end
+endfunction
