@@ -71,6 +71,21 @@ for k=1:length(c)
 	if c{1,k} == "SUM"
 
 	else if c{1,k} == "AVG"
-		dis
+
+	else if c{1,k} == "MAX"
+
+	else if c{1,k} == "MIN"
+
+	else if c{1,k} == "FXP"
+
+	else if c{1,k} == "FXP"
+
+	else if c{1,k} == "FPO"
+
+	else if c{1,k} == "FSN"
+
+	else if c{1,k} == "FCS"
+
+	endif
 end
 
