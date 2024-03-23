@@ -1,20 +1,20 @@
-disp("")
+disp("");
 function retval = getSum(listIn)
 retval = 0;
 	for i = 1: length(listIn)
-		retval += listIn(i)
+		retval += listIn(i);
 	end
 endfunction
 
 function retval = getAvg(listIn)
-retval = getSum(listIn)/length(listIn)
+	retval = getSum(listIn)/length(listIn);
 endfunction
 
 function retval = getMax(listIn)
 retval = 0;
 	for i = 1: length(listIn)
 		if(listIn(i) > retval)
-			retval = listIn(i)
+			retval = listIn(i);
 		endif 
 	end
 endfunction
@@ -23,20 +23,20 @@ function retval = getMin(listIn)
 retval = 10;
 	for i = 1: length(listIn)
 		if(listIn(i) < retval)
-			retval = listIn(i)
+			retval = listIn(i);
 		endif
 	end
 endfunction
 
 function retval = factorial(numIn)
 	if numIn ==0 || numIn ==1
-		retval = 1
+		retval = 1;
 	else
-		retval numIn * factorial(numIn-1);
+		retval = numIn * factorial(numIn-1);
 	endif
 endfunction
 
-funtion retval = getSin(angle)
+function retval = getSin(angle)
 retval = 0;
 angle = angle % (2*3.14);
 	for i = 0:50
@@ -46,21 +46,31 @@ endfunction
 
 function retval = getCos(angle)
 retval = 0;
-angle = angle % (2*3.14)
+angle = angle % (2*3.14);
 	for i = 0:50
-		retval += ((-1) ** x) * (angle ** (2 * x )) / factorial(2 * x);
+		retval += ((-1)^x) * (angle^(2 * x )) / factorial(2 * x);
 	end
 endfunction
 
 function retval = getExponential(numIn)
 retval = 0;
 	for i = 0:50
-		retval +=(numIn^i)/factorial(i);
+		retval += (numIn^i)/factorial(i);
 	end
 endfunction
 
 function retval = getPoisson(numIn)
-  	 a = (2.71828 ^- 50)
-    	 b = (50^ numIn) / factorial(numIn)
+  	 a = (2.71828 ^- 50);
+     b = (50^ numIn) / factorial(numIn);
          retval =a * b
 endfunction
+
+c = {"SUM",5,1.0,2.0,3.0,4.0,5.0,"AVG",5,1.0,2.0,3.0,4.0,5.0,"MAX",5,1.0,2.0,3.0,4.0,5.0, "MIN",5,1.0,2.0,3.0,4.0,5.0, "FXP",5,1.0,2.0,3.0,4.0,5.0,"FPO",5,1.0,2.0,3.0,4.0,5.0,"FSN",5,1.0,2.0,3.0,4.0,5.0,"FCS",5,1.0,2.0,3.0,4.0,5.0};
+
+for k=1:length(c)
+	if c{1,k} == "SUM"
+
+	else if c{1,k} == "AVG"
+		dis
+end
+
