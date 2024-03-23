@@ -1,7 +1,5 @@
 file1 = open("DataInput.txt", "r+")
 lines = [line.strip() for line in file1.readlines()]
-print(lines)
-counter = 0
 # ----------------- ( Helper Methods ) -----------------
 
 def factorial(num):
@@ -11,7 +9,7 @@ def factorial(num):
     return factor
 
 def calcSin(angle):
-        angle = angle % (2 * 3.14) # pi
+        angle = angle % (2 * 3.14) 
         toReturn = 0.0
         for x in range(50):
             result = ((-1) ** x) * (angle ** (2 * x + 1)) / factorial(2 * x + 1)
@@ -19,7 +17,7 @@ def calcSin(angle):
         return toReturn
 
 def calcCos(angle):
-        angle = angle % (2 * 3.14) # pi
+        angle = angle % (2 * 3.14) 
         toReturn = 0.0
         for x in range(50):
             result = ((-1) ** x) * (angle ** (2 * x )) / factorial(2 * x)
@@ -39,12 +37,10 @@ def poisson(num):
     b = (50 ** num) / factorial(num)
     return a * b
 
-# ----------------- ( Main Methods ) -----------------
-
-def calcSum(n):
+def calcSum(arrIn):
     sum = 0
-    for x in range(counter+1,counter+1+n):
-        sum = sum + float(lines[counter+1])    
+    for i in range(arrIn):
+        sum = sum + float(arrIn[i])    
     file1.write(sum)
     return sum
 
@@ -52,78 +48,55 @@ def avg(n):
     file1.write(calcSum(n)/n)
     return calcSum(n)/n
 
-def max(n):
-    max = float(lines[counter + 2])
-    for x in range(1, n):
-        if float(lines[counter + 2 + x]) > max:
-            max = float(lines[counter + 2 + x])
-    file1.write(max)
+def max(arrIn):
+    max = 0
+    for i in range(arrIn):
+        if arrIn[i] > max:
+            max = arrIn[i]
     return max
 
-def min(n):
-    min = float(lines[counter + 2])
-    for x in range(1, n):
-        if float(lines[counter + 2 + x]) < min:
-            min = float(lines[counter + 2 + x])
-    file1.write(min)
+def min(arrIn):
+    min = 10
+    for i in range(arrIn):
+        if arrIn[i] < min:
+            min = arrIn[i]
     return min
-
-def exp(n):
-    for x in range(1,n):
-        file1.write(exponential(lines[counter + 2 + x]))
-        return exponential(lines[counter + 2 + x])
-
-def poission(n):
-    for x in range(1,n):
-        file1.write(poisson(lines[counter + 2 + x]))
-        return exponential(lines[counter + 2 + x])
-
-
-def cos(n):
-    for x in range(1,n):
-        file1.write(cos(lines[counter + 2 + x]))
-        return calcCos(lines[counter + 2 + x])
-
-def sin(n):
-    for x in range(1,n):
-        file1.write(sin(lines[counter + 2 + x]))
-        return calcSin(lines[counter + 2 + x])
-
 
 # ----------------- ( Main Program ) -----------------
 
-for i in range(len(lines)):
-     if lines[i] == "SUM" :
-        calcSum (int(lines[i+1]))
-        counter = counter + 8
+i = 0
 
-     elif lines[i] == "AVG":
-        avg(int(lines[i+1]))
-        counter = counter + 8
+while(lines[i] != 'END'):
+    numVals = int(lines[i + 1])
+    splicedArr = [float(x) for x in lines[i + 2 : i + 2 + numVals]]
+    if lines[i] == 'SUM':
+        file1.write(sum(splicedArr) +"\n")
 
-     elif lines[i] == "MAX" :
-        max(int(lines[i+1]))
-        counter = counter + 8
+    elif lines[i] == 'AVG':
+        file1.write(avg(splicedArr)+"\n")
 
-     elif lines[i] == "MIN":
-        min(int(lines[i+1]))
-        counter = counter + 8
+    elif lines[i] == 'MAX':
+        file1.write(max(splicedArr)+"\n")
 
-     elif lines[i] == "FXP":
-        exp(int(lines[i+1]))
-        counter = counter + 8
+    elif lines[i] == 'MIN':
+        file1.write(min(splicedArr)+"\n")
 
-     elif lines[i] == "FPO":
-        poission(int(lines[i+1]))
-        counter = counter + 8
+    elif lines[i] == 'FXP':
+        for x in splicedArr:
+            file1.write(exponential(x)+", ")
+        file1.write("\n")
 
-     elif lines[i] == "FSN":
-        sin(int(lines[i+1]))
-        counter = counter + 8
+    elif lines[i] == 'FPO':
+        for x in splicedArr:
+            file1.write(poisson(x)+", ")
+        file1.write("\n")
 
-     elif lines[i] == "FCS":
-        cos(int(lines[i+1]))
-        counter = counter + 8
+    elif lines[i] == 'FSN':
+        for x in splicedArr:
+            file1.write(calcSin(x)+", ")
+        file1.write("\n")
 
-     else:
-        counter = counter + 1
+    elif lines[i] == 'FCS':
+        for x in splicedArr:
+            file1.write(calcCos(x)+", ")
+        file1.write("\n")
