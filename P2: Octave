@@ -76,24 +76,29 @@ end
 fid = fopen('Output.txt','w');
 
 k = 1;
-while str2double(k) < length(arr)
-	length = cast(arr{1,k+1},'int8');
-	splicedArr = arr(k+2:length+2);
+k = str2double(k);
+while k < length(arr)
+	len = str2double(arr{k+1});
+	splicedArr = arr(k+2:len+2);
 	if arr{1,k} == "SUM"
 		castedArr = round(str2double(splicedArr));
 		fputs(fid, [num2str(getSum(castedArr))]);
+		fputs(fid, "\n");
 
 	elseif arr{1,k} == "AVG"
 		castedArr = round(str2double(splicedArr));
 		fputs(fid, [num2str(getAvg(castedArr))]);
+		fputs(fid, "\n");
 
 	elseif arr{1,k} == "MAX" 
 		castedArr = round(str2double(splicedArr));
 		fputs(fid, [num2str(getMax(castedArr))]);
+		fputs(fid, "\n");
 
 	elseif arr{1,k} == "MIN"
 		castedArr =cast(splicedArr,'int8');
 		fputs(fid, [num2str(getMin(castedArr))]);
+		fputs(fid, "\n");
 
 	elseif arr{1,k} == "FXP"
 		for i= 1:length
