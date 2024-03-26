@@ -73,7 +73,7 @@ while ~feof(file)
         arr{end+1} = line;
     end
 end
-fid = fopen('Output.txt');
+fid = fopen('Output.txt','w');
 
 k = 1;
 while str2double(k) < length(arr)
