@@ -73,47 +73,51 @@ while ~feof(file)
         arr{end+1} = line;
     end
 end
-fclose(file);
-
-fid = fopen('Output.txt', 'w');
+fid = fopen('Output.txt');
 
 k = 1;
-while k <= length(arr) && ~strcmp(arr{1,k+1}, "END")
-    len = cast(arr{1,k+1},'int8');
-    splicedArr = arr(k+2:k+1+len);
-    if strcmp(arr{1,k}, "SUM")
-        castedArr = cast(str2double(splicedArr), 'int8');
-        fputs(fid, num2str(getSum(castedArr)) + "\n");
-    elseif strcmp(arr{1,k}, "AVG")
-        castedArr = cast(str2double(splicedArr), 'int8');
-        fputs(fid, num2str(getAvg(castedArr)) + "\n");
-    elseif strcmp(arr{1,k}, "MAX")
-        castedArr = cast(str2double(splicedArr), 'int8');
-        fputs(fid, num2str(getMax(castedArr)) + "\n");
-    elseif strcmp(arr{1,k}, "MIN")
-        castedArr = cast(str2double(splicedArr), 'int8');
-        fputs(fid, num2str(getMin(castedArr)) + "\n");
-    elseif strcmp(arr{1,k}, "FXP")
-        for i = 1:length(splicedArr)
-            fputs(fid, num2str(getExponential(str2num(splicedArr{i}))) + " ");
-        end
-        fputs(fid, "\n");
-    elseif strcmp(arr{1,k}, "FPO")
-        for i = 1:length(splicedArr)
-            fputs(fid, num2str(getPoisson(str2num(splicedArr{i}))) + " ");
-        end
-        fputs(fid, "\n");
-    elseif strcmp(arr{1,k}, "FSN")
-        for i = 1:length(splicedArr)
-            fputs(fid, num2str(getSin(str2num(splicedArr{i}))) + " ");
-        end
-        fputs(fid, "\n");
-    elseif strcmp(arr{1,k}, "FCS")
-        for i = 1:length(splicedArr)
-            fputs(fid, num2str(getCos(str2num(splicedArr{i}))) + " ");
-        end
-        fputs(fid, "\n");
-    endif
-    k++;
+while str2double(k) < length(arr)
+	length = cast(arr{1,k+1},'int8');
+	splicedArr = arr(k+2:length+2);
+	if arr{1,k} == "SUM"
+		castedArr = round(str2double(splicedArr));
+		fputs(fid, [num2str(getSum(castedArr))]);
+
+	elseif arr{1,k} == "AVG"
+		castedArr = round(str2double(splicedArr));
+		fputs(fid, [num2str(getAvg(castedArr))]);
+
+	elseif arr{1,k} == "MAX" 
+		castedArr = round(str2double(splicedArr));
+		fputs(fid, [num2str(getMax(castedArr))]);
+
+	elseif arr{1,k} == "MIN"
+		castedArr =cast(splicedArr,'int8');
+		fputs(fid, [num2str(getMin(castedArr))]);
+
+	elseif arr{1,k} == "FXP"
+		for i= 1:length
+			fputs(fid,getExponential(str2num(splicedArr(i)))+" ");
+		end
+		fputs(fid, "\n");
+
+	elseif arr{1,k} == "FPO"
+		for i= 1:length
+			fputs(fid,getPoisson(str2num(splicedArr(i))) +" ");
+		end
+		fputs(fid, "\n");
+
+	elseif arr{1,k} == "FSN"
+		for i=1:length
+			fputs(fid,getSin(str2num(splicedArr(i))) + " ");
+		end
+		fputs(fid, "\n");
+
+	elseif arr{1,k} == "FCS"
+		for i=1:length
+			fputs(fid,getCos(str2num(splicedArr(i)) )+ " ");
+		end
+		fputs(fid, "\n");
+		endif
+	k++;
 end
-fclose(fid);
