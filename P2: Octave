@@ -73,7 +73,7 @@ disp(arr);
 fid = fopen('Output.txt');
 
 k = 1;
-while arr{1,k+1} != "END"
+while arr{1,k+1} ~= "END"
 	length = cast(arr{1,k+1},'int8');
 	splicedArr = arr(k+2:length+2);
 	if arr{1,k} == "SUM"
