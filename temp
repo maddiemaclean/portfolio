@@ -1,0 +1,21 @@
+file = fopen('DataInput.txt', 'r');
+if file == -1
+    error("Error opening file");
+end
+
+% Read all lines from the file
+lines = {};
+while ~feof(file)
+    line = fgetl(file);
+    if ischar(line)
+        lines{end+1} = line;
+    end
+end
+
+fclose(file);
+
+% Split the lines into individual strings
+for i = 1:length(lines)
+    data = strsplit(lines{i}, ' ');
+    % Process the data as needed
+end
