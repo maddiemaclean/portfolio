@@ -14,3 +14,26 @@
 (define p1 (make-object point% 9 3))
 (define p2 (make-object point% -1 2))
 (send p1 distance p2) 
+
+; ==========================================
+
+#lang racket
+(require racket/class)
+
+(define point%
+  (class object%
+    (super-new)
+    (define/public (distance other)
+      ;; Issue 1: Use proper syntax for expt function
+      (sqrt (+ (expt (- (send this get-x) (send other get-x)) 2)
+               (expt (- (send this get-y) (send other get-y)) 2))))
+    (define/public (set-x nx) (set! x nx))
+    (define/public (set-y ny) (set! y ny))
+    ;; Issue 2: Define accessors for x and y fields
+    (define/public (get-x) x)
+    (define/public (get-y) y)
+    (init-field x y)))
+
+(define p1 (make-object point% 9 3))
+(define p2 (make-object point% -1 2))
+(send p1 distance p2)
