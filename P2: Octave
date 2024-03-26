@@ -48,7 +48,7 @@ function retval = getCos(angle)
 retval = 0;
 angle = angle % (2*3.14);
 	for i = 0:50
-		retval += ((-1)^x) * (angle^(2 * x )) / factorial(2 * x);
+		retval += ((-1)^i) * (angle^(2 * i )) / factorial(2 * i);
 	end
 endfunction
 
@@ -77,40 +77,44 @@ while arr{1,k+1} ~= "END"
 	length = cast(arr{1,k+1},'int8');
 	splicedArr = arr(k+2:length+2);
 	if arr{1,k} == "SUM"
-		fputs(fid,getSum(splicedArr) + "\n");
+		castedArr =cast(splicedArr,'int8');
+		fputs(fid,getSum(castedArr) + "\n");
 
 	else if arr{1,k} == "AVG"
-		fputs(fid,getAvg(splicedArr)+ "\n");
+		castedArr =cast(splicedArr,'int8');
+		fputs(fid,getAvg(castedArr)+ "\n");
 
-	else if arr{1,k} == "MAX"
-		fputs(fid,getMax(splicedArr)+ "\n");
+	else if arr{1,k} == "MAX" 
+		castedArr =cast(splicedArr,'int8');
+		fputs(fid,getMax(castedArr)+ "\n");
 
 	else if arr{1,k} == "MIN"
-		fputs(fid,getMin(splicedArr)+ "\n");
+		castedArr =cast(splicedArr,'int8');
+		fputs(fid,getMin(castedArr)+ "\n");
 
 	else if arr{1,k} == "FXP"
 		for i= 1:length
-			fputs(fid,getExponential(splicedArr(i))+" ");
+			fputs(fid,getExponential(str2num(splicedArr(i)))+" ");
 		end
 		fputs(fid, "\n");
 
 	else if arr{1,k} == "FPO"
 		for i= 1:length
-			fputs(fid,getPoisson(splicedArr(i)) +" ");
+			fputs(fid,getPoisson(str2num(splicedArr(i))) +" ");
 		end
 		fputs(fid, "\n");
 
 	else if arr{1,k} == "FSN"
 		for i=1:length
-			fputs(fid,getSin(splicedArr(i)) + " ");
+			fputs(fid,getSin(str2num(splicedArr(i))) + " ");
 		end
 		fputs(fid, "\n");
 
 	else if arr{1,k} == "FCS"
 		for i=1:length
-			fputs(fid,getCos(splicedArr(i)) + " ");
+			fputs(fid,getCos(str2num(splicedArr(i)) )+ " ");
 		end
 		fputs(fid, "\n");
-	endif
+		endif
 	k++;
-endwhile
+end
