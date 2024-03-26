@@ -65,31 +65,53 @@ function retval = getPoisson(numIn)
          retval =a * b
 endfunction
 
-file = fopen('');
+file = fopen('DataInput.txt');
+disp(file);
+arr = strsplit(file,"\n");
+disp(arr);
 
-while c{1,k+!} != "END"
-	k = 0;
+fid = fopen('Output.txt');
+
+k = 1;
+while c{1,k+1} != "END"
 	length = cast(c{1,k+1},'int8');
 	splicedArr = c(k+2:length+2);
 	if c{1,k} == "SUM"
+		fputs(fid,getSum(splicedArr) + "\n");
 
 	else if c{1,k} == "AVG"
+		fputs(fid,getAvg(splicedArr)+ "\n");
 
 	else if c{1,k} == "MAX"
+		fputs(fid,getMax(splicedArr)+ "\n");
 
 	else if c{1,k} == "MIN"
+		fputs(fid,getMin(splicedArr)+ "\n");
 
 	else if c{1,k} == "FXP"
-
-	else if c{1,k} == "FXP"
+		for i= 1:length
+			fputs(fid,getExponential(splicedArr(i))+" ");
+		end
+		fputs(fid, "\n");
 
 	else if c{1,k} == "FPO"
+		for i= 1:length
+			fputs(fid,getPoisson(splicedArr(i)) +" ");
+		end
+		fputs(fid, "\n");
 
 	else if c{1,k} == "FSN"
+		for i=1:length
+			fputs(fid,getSin(splicedArr(i)) + " ");
+		end
+		fputs(fid, "\n");
 
 	else if c{1,k} == "FCS"
+		for i=1:length
+			fputs(fid,getCos(splicedArr(i)) + " ");
+		end
+		fputs(fid, "\n");
 
 	endif
-	k++
+	k++;
 end
-
