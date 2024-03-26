@@ -65,11 +65,14 @@ function retval = getPoisson(numIn)
          retval =a * b
 endfunction
 
-file = fopen('DataInput.txt');
-disp(file);
-arr = strsplit(file,"\n");
-disp(arr);
-
+file = fopen('DataInput.txt','r');
+arr = {};
+while ~feof(file)
+    line = fgetl(file);
+    if ischar(line) && ~isempty(line)
+        arr{end+1} = line;
+    end
+end
 fid = fopen('Output.txt');
 
 k = 1;
