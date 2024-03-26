@@ -1,0 +1,13 @@
+#lang racket
+
+(define(sum listIn)
+  (cond
+     [(empty? listIn)]
+     [else (+(first listIn) (sum(rest listIn))])))
+
+(define(avg listIn counter)
+   define(toReturn 0)
+   (cond
+     [(empty? listIn)]
+     [else(+(first listIn) (sum((rest listIn) (add 1 counter))
+    
