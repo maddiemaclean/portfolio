@@ -1,21 +1,16 @@
-file = fopen('DataInput.txt', 'r');
-if file == -1
-    error("Error opening file");
-end
+#lang racket
+(require racket/class)
 
-% Read all lines from the file
-lines = {};
-while ~feof(file)
-    line = fgetl(file);
-    if ischar(line)
-        lines{end+1} = line;
-    end
-end
+(define point% (class object%
+                 (super-new)
+                 (define/public (distance other)
+                   (sqrt(+ (expt (- x other.x)) 2) (expt (- y other.y) 2)) ; unbound identifier in other.x
+                 (define/public (set-x nx) (set! x nx)) ; should be (set! x nx) rather than (= x nx)
+                 (define/public (set-y ny) (set! y ny)) ; same as above but for y
+                 (define/public (get-x) x);missing accessors
+                 (define/public (get-y) y)
+                   (init-field x y))))
 
-fclose(file);
-
-% Split the lines into individual strings
-for i = 1:length(lines)
-    data = strsplit(lines{i}, ' ');
-    % Process the data as needed
-end
+(define p1 (make-object point% 9 3))
+(define p2 (make-object point% -1 2))
+(send p1 distance p2) 
