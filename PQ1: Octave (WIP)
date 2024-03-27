@@ -1,8 +1,14 @@
-locations = Locations.csv
-cities = Cities.csv
-# function retval = readCSV()
-dataLoc = dlmread(locations, ',');
-dataCit = dlmread(cities, ',');
+fid = fopen('Cities.csv', 'r');  % Open the CSV file
+data = textscan(fid, '%s %f %f', 'Delimiter', ',', 'HeaderLines', 1);  % Read data skipping the header
+fclose(fid);  % Close the file
 
-disp(locations)
-disp(cities)
+% Extracting the data into separate arrays
+names = data{1};
+x_pos = data{2};
+y_pos = data{3};
+
+% Alternatively, you can store them in a cell array
+city_data = {names, x_pos, y_pos};
+
+% Displaying the data
+disp(city_data);
