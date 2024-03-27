@@ -1,14 +1,43 @@
-fid = fopen('Cities.csv', 'r');  % Open the CSV file
-data = textscan(fid, '%s %f %f', 'Delimiter', ',', 'HeaderLines', 1);  % Read data skipping the header
-fclose(fid);  % Close the file
+disp("");
 
-% Extracting the data into separate arrays
-names = data{1};
-x_pos = data{2};
-y_pos = data{3};
+fid = fopen('Cities.csv', 'r'); 
+cityData = textscan(fid, '%s %f %f', 'Delimiter', ',', 'HeaderLines', 1); 
 
-% Alternatively, you can store them in a cell array
-city_data = {names, x_pos, y_pos};
+fid2 = fopen('Locations.csv','r');
+locationData = textscan(fid2,  '%s %f %f', 'Delimiter', ',', 'HeaderLines', 1);
 
-% Displaying the data
-disp(city_data);
+
+CityAx = cityData{2}(1);
+CityAy = cityData{3}(1);
+CityBx = cityData{2}(2);
+CityBy = cityData{3}(2);
+CityCx = cityData{2}(3);
+CityCy = cityData{3}(3);
+CityDx = cityData{2}(4);
+CityDy = cityData{3}(4);
+
+function [minVal ,index]= calcCity(cityX,cityY)
+	minVal = 1000;
+	i = 0;
+	for i=1:100
+		ix = str2double(locationData{2}(i))
+		iy = str2double(locationData{3}(i))
+		if getED(cityX,cityY,ix,iy) < minDist
+			minVal = getED(cityX,cityY,ix,iy);
+			index = i;
+		endif
+	end
+endfunction
+
+
+
+function retval = getED(x1,y1,x2,y2)
+	retval =sqrt(((x2-x1)^2)+((y2-y1)^2));
+endfunction
+ 
+	disp("City  |  #Closest  | Nearest Location");
+	disp("======================================");
+	disp(" A    |            | " + calcCity(CityAx,CityAy));
+	disp(" B    |            | ");
+	disp(" C    |            | ");
+	disp(" D    |            | ");
