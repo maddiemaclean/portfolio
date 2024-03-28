@@ -16,19 +16,17 @@ CityCy = cityData{3}(3);
 CityDx = cityData{2}(4);
 CityDy = cityData{3}(4);
 
-function [minVal ,index]= calcCity(cityX,cityY)
-	minVal = 1000;
-	i = 0;
+function minVal= calcCity(cityX,cityY,dataIn)
+	minVal = 1000.00;
 	for i=1:100
-		ix = str2double(locationData{2}(i))
-		iy = str2double(locationData{3}(i))
-		if getED(cityX,cityY,ix,iy) < minDist
-			minVal = getED(cityX,cityY,ix,iy);
-			index = i;
+		ix = dataIn{2}(i);
+		iy = dataIn{3}(i);
+		calc = getED(cityX,cityY,ix,iy)
+		if calc < minVal
+			minVal = calc
 		endif
 	end
 endfunction
-
 
 
 function retval = getED(x1,y1,x2,y2)
@@ -37,7 +35,7 @@ endfunction
  
 	disp("City  |  #Closest  | Nearest Location");
 	disp("======================================");
-	disp(" A    |            | " + calcCity(CityAx,CityAy));
+	disp(" A    |            | " + calcCity(CityAx,CityAy,locationData));
 	disp(" B    |            | ");
 	disp(" C    |            | ");
 	disp(" D    |            | ");
