@@ -6,7 +6,6 @@ cityData = textscan(fid, '%s %f %f', 'Delimiter', ',', 'HeaderLines', 1);
 fid2 = fopen('Locations.csv','r');
 locationData = textscan(fid2,  '%s %f %f', 'Delimiter', ',', 'HeaderLines', 1);
 
-
 CityAx = cityData{2}(1);
 CityAy = cityData{3}(1);
 CityBx = cityData{2}(2);
@@ -16,18 +15,19 @@ CityCy = cityData{3}(3);
 CityDx = cityData{2}(4);
 CityDy = cityData{3}(4);
 
-function minVal= calcCity(cityX,cityY,dataIn)
+function [minVal, index]= calcCity(cityX,cityY,dataIn)
 	minVal = 1000.00;
+	index = 0;
 	for i=1:100
 		ix = dataIn{2}(i);
 		iy = dataIn{3}(i);
-		calc = getED(cityX,cityY,ix,iy)
+		calc = getED(cityX,cityY,ix,iy);
 		if calc < minVal
-			minVal = calc
+			minVal = calc;
+			index = i;
 		endif
 	end
 endfunction
-
 
 function retval = getED(x1,y1,x2,y2)
 	retval =sqrt(((x2-x1)^2)+((y2-y1)^2));
@@ -35,7 +35,7 @@ endfunction
  
 	disp("City  |  #Closest  | Nearest Location");
 	disp("======================================");
-	disp(" A    |            | " + calcCity(CityAx,CityAy,locationData));
-	disp(" B    |            | ");
-	disp(" C    |            | ");
-	disp(" D    |            | ");
+	disp([" A    |            | " strcat(num2str(nthargout(0,calcCity(CityAx,CityAy,locationData))))]);
+	disp([" B    |            | " strcat(num2str(calcCity(CityBx,CityBy,locationData)))]);
+	disp([" C    |            | " strcat(num2str(calcCity(CityCx,CityCy,locationData)))]);
+	disp([" D    |            | " strcat(num2str(calcCity(CityDx,CityDy,locationData)))]);
