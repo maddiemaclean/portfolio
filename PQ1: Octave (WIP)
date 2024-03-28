@@ -32,10 +32,14 @@ endfunction
 function retval = getED(x1,y1,x2,y2)
 	retval =sqrt(((x2-x1)^2)+((y2-y1)^2));
 endfunction
- 
-	disp("City  |  #Closest  | Nearest Location");
-	disp("======================================");
-	disp([" A    |            | " strcat(num2str(nthargout(0,calcCity(CityAx,CityAy,locationData))))]);
-	disp([" B    |            | " strcat(num2str(calcCity(CityBx,CityBy,locationData)))]);
-	disp([" C    |            | " strcat(num2str(calcCity(CityCx,CityCy,locationData)))]);
-	disp([" D    |            | " strcat(num2str(calcCity(CityDx,CityDy,locationData)))]);
+
+disp("City  |  #Closest  | Nearest Location");
+disp("======================================");
+[minValA, indexA] = calcCity(CityAx, CityAy, locationData);
+disp([" A    |      " num2str(indexA) "      | " strcat("Location ", num2str(minValA))]);
+[minValB, indexB] = calcCity(CityBx, CityBy, locationData);
+disp([" B    |      " num2str(indexB) "      | " strcat("Location ", num2str(minValB))]);
+[minValC, indexC] = calcCity(CityCx, CityCy, locationData);
+disp([" C    |      " num2str(indexC) "      | " strcat("Location ", num2str(minValC))]);
+[minValD, indexD] = calcCity(CityDx, CityDy, locationData);
+disp([" D    |      " num2str(indexD) "      | " strcat("Location ", num2str(minValD))]);
