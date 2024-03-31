@@ -1,11 +1,11 @@
 #lang racket
 (define LetterNode%(class object%
-                    (init [letterIn][frequencyIn 1][left #f][right #f])
+                    (init [letterIn #f][frequencyIn 1][left #f][right #f])
                     (super-new)
                      (define/public (increment-frequency)
-                       (set! frequency (+ frequency 1)))
+                       (set-frequency (+ get-frequency 1)))
                      (define/public (print)
-                       (displayln(string-append letter ": " frequency)))
+                       (displayln(string-append get-letter ": " get-frequency)))
                      (define/public (set-left leftIn)(set! left leftIn))
                      (define/public (set-right rightIn)(set! right rightIn))
                      (define/public (set-letter letterIn)(set! letter letterIn))
