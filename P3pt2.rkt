@@ -15,8 +15,9 @@
                       [else(send nodeIn increment-frequency)])))
 
                (define/public (print-tree nodeIn)
-                 (unless(empty?(send nodeIn get-left))
+                 (unless(null? nodeIn)
                    (print-tree(send nodeIn get-left))
                  (send nodeIn print)
-                 (unless(empty?(send nodeIn get-right))
-                   (print-tree(send node get-right)))))))
+                 (unless(null? nodeIn)
+                   (print-tree(send node get-right))))
+                 (send nodeIn print)))))
