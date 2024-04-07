@@ -45,4 +45,6 @@ end
 
 beoTable = {};
 beoTable = getFreqTable(wordsBeo, beoTable);
-disp(beoTable);
+
+vinTable = {};
+vinTable = getFreqTable(wordsVin, vinTable);
