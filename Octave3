@@ -53,7 +53,7 @@ function retval = getOdds(word, freqTable)
     for i = 1:length(freqTable)
         found = false;
         if strcmp(word, freqTable{i}{1})
-            retval = freqTable{i}{2}/length(freqTable)
+            retval = freqTable{i}{2}/sum(cell2mat(freqTable(:,2)));
             found = true;
             break;
         endif
