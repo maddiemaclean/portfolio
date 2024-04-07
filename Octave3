@@ -48,3 +48,39 @@ beoTable = getFreqTable(wordsBeo, beoTable);
 
 vinTable = {};
 vinTable = getFreqTable(wordsVin, vinTable);
+
+function retval = getOdds(word, freqTable)
+    for i = 1:length(freqTable)
+        found = false;
+        if strcmp(word, freqTable{i}{1})
+            retval = freqTable{i}{2}/length(freqTable)
+            found = true;
+            break;
+        endif
+    end 
+    if ~found
+        retval = 0;
+    endif
+endfunction
+
+function retval = determineOrigin(freqTableA, freqTableB, phrase)
+    sumA = 0;
+    sumB = 0;
+    phrase = strsplit(phrase);
+    for i = 1:length(phrase)
+        sumA += getOdds(phrase{i},freqTableA);
+        sumB += getOdds(phrase{i},freqTableB);
+    end
+    if sumA > sumB
+        retval = "More likely to be written by unknown author";
+    if sumA < sumB
+        retval = "More likely to be written by Mary Wollstonecraft";
+    else
+        retval = "Could be from either author"
+    endif
+endfunction
+    
+        
+
+    
+        
