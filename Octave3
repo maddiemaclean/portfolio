@@ -1,52 +1,48 @@
 beowulf = fopen('Beowulf.txt','r');
 linesBeo = {};
 while ~feof(beowulf)
-  line = fgets(beowulf);
-  linesBeo{end+1} = line;
+    line = fgets(beowulf);
+    linesBeo{end+1} = line;
 end
-
 fclose(beowulf);
-wordsBeo = {}
 
+wordsBeo = {};
 for i = 1:length(linesBeo)
-  temp = strsplit(linesBeo{i});
-  wordsBeo = [wordsBeo,temp];
+    temp = strsplit(linesBeo{i});
+    wordsBeo = [wordsBeo,temp];
 end
 
 vindication = fopen('Vindication.txt','r');
 linesVin = {};
 while ~feof(vindication)
-  line = fgets(vindication);
-  linesVin{end+1} = line;
+    line = fgets(vindication);
+    linesVin{end+1} = line;
 end
-
 fclose(vindication);
-wordsVin = {}
 
+wordsVin = {};
 for i = 1:length(linesVin)
-  temp = strsplit(linesVin{i});
-  wordsVin = [wordsVin,temp];
+    temp = strsplit(linesVin{i});
+    wordsVin = [wordsVin,temp];
 end
 
 function retval = getFreqTable(wordsIn, freqTable)
-	for i = 1:length(wordsIn)
-		found = false;
-		for j = 1:length(freqTable)
-			if strcmp(wordsIn{i}, freqTable{j}{1})
-				freqTable{j}{2} = freqTable{j}{2} +1;
-				found = true;
-				break;
-			endif
-		end
-		if ~found
-			freqTable{end+1} = {wordsIn{i}, 1};
-		endif
-	end
-	retval = freqTable
-endfunction
+    for i = 1:length(wordsIn)
+        found = false;
+        for j = 1:length(freqTable)
+            if strcmp(wordsIn{i}, freqTable{j}{1})
+                freqTable{j}{2} = freqTable{j}{2} + 1;
+                found = true;
+                break;
+            end
+        end
+        if ~found
+            freqTable{end+1} = {wordsIn{i}, 1};
+        end
+    end
+    retval = freqTable;
+end
 
-beoTable = cell(2,2)
-getFreqTable(wordsBeo, beoTable)
-			
-	
-
+beoTable = {};
+beoTable = getFreqTable(wordsBeo, beoTable);
+disp(beoTable);
