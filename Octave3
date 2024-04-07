@@ -1,16 +1,11 @@
-beowolf = fopen('Beowolf.txt','r');
-linesBeo = {};
-while ~feof(beowolf)
-  line = fget1(beowolf);
-  linesBeo{end+1} = line;
-end
-
-fclose(beowolf);
-wordsBeo = {}
-
-for i = 1:length(linesBeo)
-  temp = strsplit(linesBeo{i});
-  wordsBeo = [wordsBeo,temp]
-end
-
-disp(words);
+function retval = getFreqTable(wordsIn, cellArrIn)
+	for i = 1:length(wordsIn)
+		for j = 1:length(cellArrIn)
+			if wordsIn{i} == cellArrIn{j}
+				cellArrIn{j, +1};
+			else
+				cellArrIn(wordsIn{i},end+1);
+			endif
+		end
+	end
+endfunction
