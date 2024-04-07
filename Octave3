@@ -1,11 +1,19 @@
-function retval = getFreqTable(wordsIn, cellArrIn)
+function retval = getFreqTable(wordsIn, freqTable)
 	for i = 1:length(wordsIn)
-		for j = 1:length(cellArrIn)
-			if wordsIn{i} == cellArrIn{j}
-				cellArrIn{j, +1};
-			else
-				cellArrIn(wordsIn{i},end+1);
+		found = false;
+		for j = 1:length(freqTable)
+			if strcmp(wordsIn{i}, freqTable{j}{1})
+				freqTable{j}{2} = freqTable{j}{2} +1;
+				found = true;
+				break;
 			endif
 		end
+		if found = false
+			freqTable{end+1} = {wordsIn{i}, 1};
+		endif
 	end
+	retval = freqTable
 endfunction
+			
+	
+
