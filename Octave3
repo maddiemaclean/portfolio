@@ -79,8 +79,5 @@ function retval = determineOrigin(freqTableA, freqTableB, phrase)
         retval = "Could be from either author"
     endif
 endfunction
-    
-        
 
-    
-        
+determineOrigin(beoTable, vinTable, "The Wonder of");
