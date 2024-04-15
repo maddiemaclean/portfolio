@@ -1,3 +1,5 @@
+;3-unsaved-editor:2:0: define: bad syntax (multiple expressions after identifier)
+;in: (define BST% (class object% (init root) (define/public (insert value) (define (insert-helper nodeIn) (cond ((null? nodeIn) (set! root (new LetterNode% (value value)))) ((< value (send nodeIn get-letter)) (if (send nodeIn get-left) (insert-helper (...#(14 1128)
 (define BST% (class object%
                (init root)
                (define/public (insert value)
